@@ -19,6 +19,9 @@
         
         Class stringClass = NSClassFromString(@"__NSCFString");
         
+        //appendString:
+        [AvoidCrash exchangeInstanceMethod:stringClass method1Sel:@selector(appendString:) method2Sel:@selector(avoidCrashAppendString:)];
+        
         //replaceCharactersInRange
         [AvoidCrash exchangeInstanceMethod:stringClass method1Sel:@selector(replaceCharactersInRange:withString:) method2Sel:@selector(avoidCrashReplaceCharactersInRange:withString:)];
         
@@ -28,6 +31,24 @@
         //deleteCharactersInRange
         [AvoidCrash exchangeInstanceMethod:stringClass method1Sel:@selector(deleteCharactersInRange:) method2Sel:@selector(avoidCrashDeleteCharactersInRange:)];
     });
+}
+
+//=================================================================
+//                     appendString
+//=================================================================
+#pragma mark - appendString
+
+- (void)avoidCrashAppendString:(NSString *)aString {
+    @try {
+        [self avoidCrashAppendString:aString];
+    }
+    @catch (NSException *exception) {
+        NSString *defaultToDo = AvoidCrashDefaultIgnore;
+        [AvoidCrash noteErrorWithException:exception defaultToDo:defaultToDo];
+    }
+    @finally {
+        
+    }
 }
 
 //=================================================================
