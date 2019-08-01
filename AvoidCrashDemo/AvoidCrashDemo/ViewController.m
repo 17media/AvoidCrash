@@ -237,6 +237,12 @@
 //=================================================================
 #pragma mark - NSMutableString_Test
 
+- (void)NSMutableString_Test_AppendString {
+    NSMutableString *strM = [NSMutableString stringWithFormat:@"17media"];
+    NSString *nilString = nil;
+    [strM appendString:nilString];
+}
+
 - (void)NSMutableString_Test_ReplaceCharactersInRange {
     NSMutableString *strM = [NSMutableString stringWithFormat:@"chenfanfang"];
     NSRange range = NSMakeRange(0, 1000);
@@ -390,6 +396,7 @@
     [self NSString_Test_stringByReplacingCharactersInRangeWithString];
     
     
+    [self NSMutableString_Test_AppendString];
     [self NSMutableString_Test_ReplaceCharactersInRange];
     [self NSMutableString_Test_InsertStringAtIndex];
     [self NSMutableString_TestDeleteCharactersInRange];
